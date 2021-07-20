@@ -8,8 +8,9 @@ const db = [
 
 const app = express();
 
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 app.get('/testimonials', (req, res) => {
     res.json(db)
@@ -23,7 +24,7 @@ app.get('/testimonials/random', (req, res) => {
     res.json(db[`${Math.floor(Math.random() * db.length)}`])
 });
 
-app.post('/testimonials/', (req, res) => {
+app.post('/testimonials', (req, res) => {
     db.push({id: uuidv4(), author: req.body.author, text: req.body.text})
     res.json({message: "OK"});
 });
@@ -39,11 +40,11 @@ app.put('/testimonials/:id', (req, res) => {
     }
 });
 
-app.delete('/testimonials/:id', (req, res) => {
-    const index = db.find(elem => elem.id === req.params.id);
+app.delete("/testimonials/:id", (req, res) => {
+    const index = db.findIndex((item) => item.id == req.params.id);
     db.splice(index, 1);
-    res.json({message: "OK"});
-});
+    res.json({ message: "OK" });
+  });
 
 app.use((req, res) => {
     res.status(404).send({ message: "Not found..." });
