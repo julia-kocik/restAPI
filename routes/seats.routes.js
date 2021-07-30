@@ -19,6 +19,7 @@ router.route('/seats').post((req, res) => {
     } else {    
         db.seats.push({id: uuidv4(), day: req.body.day, seat: req.body.seat, client: req.body.client, email: req.body.email })
         res.json({message: "OK"})
+        req.io.emit('seatsUpdated', db.seats);
     }
 });
 
