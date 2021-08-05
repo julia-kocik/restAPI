@@ -44,8 +44,7 @@ app.get("", cors(corsOptions), function (req, res, next) {
 });
 
 // connects our backend code with the database
-const dbURI = process.env.NODE_ENV === 'production' ? 'mongodb+srv://Julia:<password>@cluster0.2rrxd.mongodb.net/myFirstDatabase?retryWrites=true&w=majority' : 'mongodb://localhost:27017/NewWaveFestivalDB';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
