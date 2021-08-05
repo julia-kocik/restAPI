@@ -5,9 +5,9 @@ const TestimonialController = require('../controllers/testimonials.controller');
 // get all testimonials
 router.get('/testimonials', TestimonialController.getAll);
 
-router.get('/testimonials/:id', TestimonialController.getById);
-
 router.get('/testimonials/random', TestimonialController.getRandom);
+
+router.get('/testimonials/:id', TestimonialController.getById);
 
 router.post('/testimonials', TestimonialController.postTes);
 

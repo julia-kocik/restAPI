@@ -9,17 +9,6 @@ exports.getAll = async (req, res) => {
     }
 }
 
-exports.getById = async (req, res) => {
-    try {
-      const tes = await Testimonial.findById(req.params.id);
-      if(!tes) res.status(404).json({ message: 'Not found' });
-      else res.json(tes);
-    }
-    catch(err) {
-      res.status(500).json({ message: err });
-    }  
-}
-
 exports.getRandom = async (req, res) => {
     try {
       const count = await Testimonial.countDocuments();
@@ -32,6 +21,17 @@ exports.getRandom = async (req, res) => {
       res.status(500).json({ message: err });
     }
   }
+
+exports.getById = async (req, res) => {
+    try {
+      const tes = await Testimonial.findById(req.params.id);
+      if(!tes) res.status(404).json({ message: 'Not found' });
+      else res.json(tes);
+    }
+    catch(err) {
+      res.status(500).json({ message: err });
+    }  
+}
 
 exports.postTes = async (req, res) => {
     try {
