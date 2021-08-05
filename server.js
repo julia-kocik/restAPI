@@ -1,11 +1,12 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const db = require("./db");
+const socket = require('socket.io');
+
+
 const testimonialsRoutes = require("./routes/testimonials.routes");
 const concertsRoutes = require("./routes/concerts.routes");
 const seatsRoutes = require("./routes/seats.routes");
-const socket = require('socket.io');
 
 const corsOptions = {
   origin: "http://localhost:8000",
@@ -16,20 +17,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/api", testimonialsRoutes);
-app.use("/api", concertsRoutes);
-app.use("/api", seatsRoutes);
-
 app.use((req, res, next) => {
   req.io = io;
   next();
 });
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.use("/api", testimonialsRoutes);
+app.use("/api", concertsRoutes);
+app.use("/api", seatsRoutes);
+
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.use((req, res) => {
@@ -48,6 +50,5 @@ const io = socket(server);
 
 io.on('connection', (socket) => {
   console.log('New socket');
- 
 });
 
