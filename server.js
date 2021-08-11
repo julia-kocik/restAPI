@@ -44,7 +44,7 @@ app.get("", cors(corsOptions), function (req, res, next) {
 });
 
 // connects our backend code with the database
-mongoose.connect('mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://Julia:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
