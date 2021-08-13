@@ -46,7 +46,15 @@ app.get("", cors(corsOptions), function (req, res, next) {
 });
 
 // connects our backend code with the database
-mongoose.connect(`mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
+
+const NODE_ENV = process.env.NODE_ENV;
+let dbUri = '';
+
+if(NODE_ENV === 'production') dbUri = 'mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDB';
+else dbUri = 'mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+
+mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
@@ -65,3 +73,4 @@ io.on('connection', (socket) => {
   console.log('New socket');
 });
 
+module.exports = server;
