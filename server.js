@@ -50,9 +50,10 @@ app.get("", cors(corsOptions), function (req, res, next) {
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
-if(NODE_ENV === 'production') dbUri = 'mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+if(NODE_ENV === 'production') dbUri = `mongodb+srv://${process.env.login}:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDB';
-else dbUri = `mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
+else dbUri = `mongodb+srv://${process.env.login}:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
+console.log(dbUri)
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
