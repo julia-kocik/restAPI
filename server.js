@@ -52,7 +52,7 @@ let dbUri = '';
 
 if(NODE_ENV === 'production') dbUri = 'mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDB';
-else dbUri = 'mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority';
+else dbUri = `mongodb+srv://Julia:mKYkS8gqbfhZfK5@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
