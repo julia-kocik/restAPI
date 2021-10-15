@@ -4,7 +4,7 @@ const cors = require("cors");
 const socket = require('socket.io');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-
+require('dotenv').config();
 
 const testimonialsRoutes = require("./routes/testimonials.routes");
 const concertsRoutes = require("./routes/concerts.routes");
@@ -52,7 +52,7 @@ let dbUri = '';
 
 if(NODE_ENV === 'production') dbUri = `mongodb+srv://${process.env.login}:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDB';
-else dbUri = `mongodb+srv://${process.env.login}:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
+else dbUri = `mongodb+srv://${process.env.user}:${process.env.password}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 console.log(dbUri)
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });

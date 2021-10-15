@@ -6,20 +6,20 @@ const items = [
   {
     src: '/img/promo/promo1.jpg',
     header: 'Great atmosphere!',
-    caption: 'Have fun with thousands of people!',
-    alt: 'Have fun with thousands of people!',
+    caption: 'Watch legendary movies with thousands of people!',
+    alt: 'Watch legendary movies with thousands of people!',
   },
   {
     src: '/img/promo/promo2.jpg',
-    altText: 'Listen to the greatest hits!',
+    altText: 'Amazing workshops!',
     caption: 'Take a part in phenomenal performances.',
-    header: 'Listen to the greatest hits',
+    header: 'Amazing workshops!',
   },
   {
     src: '/img/promo/promo3.jpg',
-    altText: 'Meet stars!',
-    caption: 'Meet the biggest music starts live!',
-    header: 'Meet stars!',
+    altText: 'Meet actors!',
+    caption: 'Ask a question to your favorite star!',
+    header: 'Meet actors!',
   }
 ];
 

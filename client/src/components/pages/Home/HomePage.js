@@ -8,7 +8,7 @@ const HomePage = () => (
   <div>
     <PromoCarousel />
     <Container>
-      <h1>Who's on?</h1>
+      <h1>Movies</h1>
       <Lineup />
     </Container>
   </div>
