@@ -12,7 +12,7 @@ const seatsRoutes = require("./routes/seats.routes");
 
 const corsOptions = {
   origin: "http://localhost:8000",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
 };
 
 const app = express();
@@ -25,9 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, "./client/build")));
-
 app.use("/api", testimonialsRoutes);
 app.use("/api", concertsRoutes);
 app.use("/api", seatsRoutes);
@@ -45,15 +43,12 @@ app.get("", cors(corsOptions), function (req, res, next) {
   res.json({ msg: "This is CORS-enabled for only example.com." });
 });
 
-// connects our backend code with the database
-
 const NODE_ENV = process.env.NODE_ENV;
 let dbUri = '';
 
 if(NODE_ENV === 'production') dbUri = `mongodb+srv://${process.env.login}:${process.env.secret}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
 else if(NODE_ENV === 'test') dbUri = 'mongodb://localhost:27017/NewWaveDB';
 else dbUri = `mongodb+srv://${process.env.user}:${process.env.password}@cluster0.2rrxd.mongodb.net/NewWaveDB?retryWrites=true&w=majority`;
-console.log(dbUri)
 
 mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;

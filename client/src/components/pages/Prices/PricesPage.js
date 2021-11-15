@@ -6,11 +6,9 @@ const Prices = () => (
   <Container>
     <h1>Prices</h1>
     <p>Prices may differ according the day of the festival.</p>
-    
     <Alert color="info">
         Attention! <strong>Children under 4 can go freely with you without any other fee!</strong>
     </Alert>
-
     <h2>Day one</h2>
     <p>Price: 5$</p>
     <p>Workshops: "Movies that changed the history of cinema"</p>

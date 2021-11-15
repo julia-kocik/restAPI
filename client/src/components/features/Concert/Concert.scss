@@ -80,6 +80,13 @@
 }
 
 @media (max-width: 768px) {
+  .concert__container {
+    display: none;
+  }
+
+  .concert__info {
+    height: 300px;
+  }
 
   .concert__info__performer {
     font-size: 1.8rem;
@@ -90,4 +97,9 @@
     font-size: 1.5rem;
     opacity: 0.7;
   }
+
+  .concert .concert__info__tickets {
+    bottom: 5rem;
+  }
+
 }
